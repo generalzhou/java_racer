@@ -1,6 +1,14 @@
-
-<form method="POST" action="/racer">
-  <input type="text" placeholder="Player 1" name="player_1"/>
-  <input type="text" placeholder="Player 2" name="player_2"/>
-  <input type="submit" value="Start Game"/>
+<form method="post" action="/player_count">
+  <input type="number" placeholder="How many players?" name="num_players">
+  <input type="submit" name="submit">
 </form>
+
+<% if @count %>
+  <form method="POST" action="/racer">
+    <% (1..@count).each do |num| %>
+      <input type="text" placeholder="Player <%= num %>" name="player_<%= num %>"/>
+      <br><br>
+    <% end %>
+    <input type='submit' value='Race!'>
+  </form>
+<% end %>

@@ -1,12 +1,18 @@
 get '/' do
-  # Look in app/views/index.erb
+  erb :index
+end
+
+post '/player_count' do 
+  @count = params[:num_players].to_i
   erb :index
 end
 
 post '/racer' do
-  player_1 = Player.find_or_create_by_name(params[:player_1])
-  player_2 = Player.find_or_create_by_name(params[:player_2])
-  erb :racer, :locals => {:player_1 => player_1, :player_2 => player_2}
+  @players =[]
+  params.each do |player, name|
+    @players << Player.find_or_create_by_name(name)
+  end
+  erb :racer
 end
 
 post '/racer/game_finished' do

@@ -1,14 +1,11 @@
 
   <h3 class="timer"></h3>
   <table class="racer_table">
-    
-    <tr id="player1_strip">
-      <td style='width:70px; border:0px' class="player_name"> <%= player_1.name %></td>
-      <%= erb :_race_grid %>
-    </tr>
-    <tr id="player2_strip">
-      <td style='width:70px; border:0px' class="player_name"> <%= player_2.name%></td>
-      <%= erb :_race_grid %>
-    </tr>
+    <% @players.each_with_index do |player, i| %>
+      <tr id="player<%= i + 1 %>_strip">
+        <td style='width:70px; border:0px' class="player_name"> <%= player.name %></td>
+        <%= erb :_race_grid %>
+      </tr>
+    <% end %>
   </table>
 
